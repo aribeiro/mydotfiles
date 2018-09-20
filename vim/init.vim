@@ -1,4 +1,5 @@
-source ~/.mydotfiles/vim/minpac.vim
+" source ~/.mydotfiles/vim/minpac.vim
+source ~/.mydotfiles/vim/plug.vim
 
 " ================ General Config ====================
 "Credit joshdick
@@ -83,7 +84,7 @@ endif
 if executable('ag')
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
   let g:ctrlp_user_command =
-        \ 'ag %s --files-with-matches -g "" --ignore "\.git$\|\.hg$\|\.svn$"'
+        \ 'ag %s --files-with-matches -g "" --ignore "\.git$\|\.hg$\|\.svn$" --ignore "node_modules"'
   " ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
 else
@@ -135,11 +136,11 @@ map <leader>jT :CtrlP test<CR>
 nnoremap <silent> <C-M> :CtrlPBufTag<CR>
 
 " ============================== DEVDOCS =============================
-nmap KK <Plug>(devdocs-under-cursor)
+" nmap KK <Plug>(devdocs-under-cursor)
 
 " ============================== SEARCH =============================
 if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
+  let g:ackprg = 'ag --vimgrep --ignore node_modules'
 endif
 " Make <enter> also open files in ACK search to be consistent with CTRLP
 " behavior
@@ -161,10 +162,10 @@ function! GetVisual()
 endfunction
 
 "grep the current word using K (mnemonic Kurrent)
-nnoremap <silent> K :Ack <cword><CR>
+" nnoremap <silent> K :Ack <cword><CR>
 
 "grep visual selection
-vnoremap K :<C-U>execute "Ack " . GetVisual()<CR>
+" vnoremap K :<C-U>execute "Ack " . GetVisual()<CR>
 
 "grep current word up to the next exclamation point using ,K
 nnoremap ,K viwf!:<C-U>execute "Ack " . GetVisual()<CR>
@@ -310,3 +311,13 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+
+
+augroup FiletypeGroup
+    autocmd!
+    au BufNewFile,BufRead *.jsx set filetype=javascript.jsx
+augroup END
+
+autocmd FileType html setlocal ts=2 sts=2 sw=2
+autocmd FileType ruby setlocal ts=2 sts=2 sw=2
+autocmd FileType javascript setlocal ts=4 sts=4 sw=4
