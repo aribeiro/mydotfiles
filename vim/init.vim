@@ -136,7 +136,7 @@ map <leader>jT :CtrlP test<CR>
 nnoremap <silent> <C-M> :CtrlPBufTag<CR>
 
 " ============================== DEVDOCS =============================
-" nmap KK <Plug>(devdocs-under-cursor)
+nmap KK <Plug>(devdocs-under-cursor)
 
 " ============================== SEARCH =============================
 if executable('ag')
@@ -162,10 +162,10 @@ function! GetVisual()
 endfunction
 
 "grep the current word using K (mnemonic Kurrent)
-" nnoremap <silent> K :Ack <cword><CR>
+nnoremap <silent> K :Ack <cword><CR>
 
 "grep visual selection
-" vnoremap K :<C-U>execute "Ack " . GetVisual()<CR>
+vnoremap K :<C-U>execute "Ack " . GetVisual()<CR>
 
 "grep current word up to the next exclamation point using ,K
 nnoremap ,K viwf!:<C-U>execute "Ack " . GetVisual()<CR>
