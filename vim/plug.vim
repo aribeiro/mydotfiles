@@ -5,7 +5,12 @@ call plug#begin('~/.mydotfiles/vim/plugged')
 
 " ====================== SYNTAX HIGHLIGHT ==============
   Plug 'vim-jp/syntax-vim-ex'
-  
+  Plug 'sheerun/vim-polyglot'
+  Plug 'lepture/vim-jinja'
+  Plug 'editorconfig/editorconfig-vim'
+  Plug 'alexlafroscia/postcss-syntax.vim'
+  Plug 'chrisbra/csv.vim'
+
   " Make sure you use single quotes
   function! DoRemote(arg)
     UpdateRemotePlugins
@@ -32,13 +37,13 @@ call plug#begin('~/.mydotfiles/vim/plugged')
 
   Plug 'w0rp/ale'
   Plug 'skywind3000/asyncrun.vim'
-  
+
   let g:ale_sign_error = '✖'
   let g:ale_sign_warning = '⚠'
   " let g:ale_warn_about_trailing_whitespace = 0
-  let g:ale_linters = {'html': [], 'javascript': ['eslint', 'prettier'], 'ruby': ['mri','rubocop']}
-
-  let g:airline#extensions#ale#enabled = 1 
+  let g:ale_linters = {'html': [], 'javascript': ['prettier-eslint', 'eslint'], 'ruby': ['mri','rubocop'], 'css': ['stylelint']}
+  let g:ale_javascript_prettier_use_local_config = 1
+  let g:airline#extensions#ale#enabled = 1
   " autocmd BufWritePost *.js AsyncRun -post=checktime eslint --fix %
   " autocmd BufWritePost *.rb AsyncRun -post=checktime rubocop %
   "
@@ -77,8 +82,8 @@ call plug#begin('~/.mydotfiles/vim/plugged')
 
   " ==================== JAVASCRIPT ======================
   Plug 'pangloss/vim-javascript'
-  Plug 'mxw/vim-jsx'
-
+  " Plug 'mxw/vim-jsx'
+  Plug 'maxmellon/vim-jsx-pretty'
   " ===================== TIM POPE =======================
   " I need to order it correctly
   Plug 'tpope/vim-surround'
@@ -88,7 +93,7 @@ call plug#begin('~/.mydotfiles/vim/plugged')
   "====================== EDITION ========================
   Plug 'tomtom/tcomment_vim'
   Plug 'mattn/emmet-vim'
-  Plug 'AndrewRadev/splitjoin.vim' 
+  Plug 'AndrewRadev/splitjoin.vim'
 
   " Plug 'townk/vim-autoclose' " kind of annoying
   autocmd FileType ruby compiler ruby
@@ -120,6 +125,11 @@ call plug#begin('~/.mydotfiles/vim/plugged')
   Plug 'mhinz/vim-startify'
   " Plug 'ryanoasis/vim-devicons'
   " set guifont=DroidSansMono\ Nerd\ Font\ 11
-  
+
   " Initialize plugin system
+
+  Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+
 call plug#end()

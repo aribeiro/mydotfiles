@@ -57,9 +57,10 @@ set autoindent
 set smartindent
 set smarttab
 set shiftwidth=2
-set softtabstop=2
+set softtabstop=0
 set tabstop=2
 set expandtab
+
 
 " Display tabs and trailing spaces visually
 set list listchars=tab:\ \ ,trail:·
@@ -304,6 +305,10 @@ vmap <A-A> :Tabularize /
 " Source current file Alt-% (good for vim development)
 map <A-%> :so %<CR>
 
+let g:EditorConfig_exclude_patterns = ['fugitive://.*']
+let g:vim_jsx_pretty_colorful_config = 1 " default 0
+let g:javascript_plugin_flow = 1
+
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
@@ -318,6 +323,8 @@ augroup FiletypeGroup
     au BufNewFile,BufRead *.jsx set filetype=javascript.jsx
 augroup END
 
-autocmd FileType html setlocal ts=2 sts=2 sw=2
-autocmd FileType ruby setlocal ts=2 sts=2 sw=2
-autocmd FileType javascript setlocal ts=4 sts=4 sw=4
+autocmd FileType css set iskeyword+=-
+autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType ruby setlocal ts=2 sts=2 sw=2 expandtab 
+autocmd FileType javascript setlocal ts=2 sts=2 sw=2 expandtab
+au BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm,*.njk set ft=jinja
