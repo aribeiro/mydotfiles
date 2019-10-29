@@ -90,10 +90,12 @@
   svnd = svn dcommit
   svnl = svn log --oneline --show-commit
   
-  mh =  log --pretty=format:\"%ad | %s%d [%an] \" --date=iso --date-order --author=alfredo --branches
-  wh =  log --pretty=format:\"%ad | %s%d [%an] \" --date=iso --date-order --author=alfredo --branches --since=\"1 week ago\"
+  mh =  log --pretty=format:\"%C(cyan)%ad%Creset %C(red)|%Creset %s%d %C(magenta)[%an]%Creset \" --date=iso --date-order --author=alfredo --branches
+  wh =  log --pretty=format:\"%C(cyan)%ad%Creset %C(red)|%Creset %s%d %C(magenta)[%an]%Creset \" --date=iso --date-order --author=alfredo --branches --since=\"1 week ago\"
+  # wh =  log --pretty=format:\"%ad | %s%d [%an] \" --date=iso --date-order --author=alfredo --branches --since=\"1 week ago\"
 [format]
-  pretty = format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C(blue)%s %C(magenta) [%an]%Creset
+  pretty = format:%C(cyan)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C(white)%s %C(magenta) [%an]%Creset
+  # pretty = format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C(blue)%s %C(magenta) [%an]%Creset
 [mergetool]
   prompt = false
 [mergetool "mvimdiff"]
@@ -114,7 +116,7 @@
 [core]
   autocrlf = false
   editor = vim
-  excludesfile = ~/.mydotfiles/git/gitignore
+	excludesfile = /Users/alfredoribeiro/.mydotfiles/git/gitignore
 [advice]
   statusHints = false
 [diff]
@@ -135,3 +137,14 @@
 	user = aribeiro
 [ghi]
 	token = 54d74e1259b87918564b59949801afe4f474f705
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
