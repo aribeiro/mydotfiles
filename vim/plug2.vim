@@ -23,7 +23,7 @@ Plug 'kien/ctrlp.vim'
 Plug 'mileszs/ack.vim'
 
 " Comments
-Plug 'tpope/vim-commentary'
+Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-surround'
 		
 " Syntax 
