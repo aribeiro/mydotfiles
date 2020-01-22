@@ -136,7 +136,7 @@
 [github]
 	user = aribeiro
 [ghi]
-	token = 54d74e1259b87918564b59949801afe4f474f705
+	token = YOUR_TOKEN_HERE
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
